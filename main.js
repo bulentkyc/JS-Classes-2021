@@ -31,6 +31,11 @@ class MyFirstClass {
         console.log('Hello World!');
     }
 
+    //
+    static test () {
+        console.log('static method')
+    }
+
 }
 
 let myFirstClassInst = new MyFirstClass('Bulent');
@@ -60,38 +65,76 @@ class Animal {
         this.name = name;
         this.speed = 0;
     }
-
     run(speed) {
         this.speed = speed;
         console.log(`${this.name} runs with speed ${this.speed}`);
     }
-
     stop () {
         this.speed = 0;
         console.log(`${this.name} stands`);
     }
 }
-
 let animal = new Animal('My animal');
-
 animal.run('20km/h');
 animal.stop();
 //animal.hide();
 
 class Rabbit extends Animal {
-
     stop () {
         super.stop();
         console.log('This is new!');
     }
-
     hide() {
         console.log(`${this.name} hides!`);
     }
 }
-
 let rabbit = new Rabbit ('White Rabbit');
 rabbit.run('10km/s');
 rabbit.stop();
 rabbit.hide();
 
+
+
+
+class CoffeeMachine {
+    //protected property
+    _waterAmount = 0;
+    //Heads-up: Protection is not language level!
+
+    #coffee = 0;
+
+    setWaterAmount(newAmount){
+        if(newAmount >= 0) {
+            this._waterAmount = newAmount;
+        } else {
+            console.warn('Water amount can not be minus!');
+        }
+    }
+
+    setCoffeeAmount (newAmount) {
+        if(newAmount >= 0) {
+            this.#coffee = newAmount;
+        } else {
+            console.warn('Coffee amount can not be minus!');
+        }
+    }
+
+
+    constructor (power) {
+        this.power = power;
+        console.log(`Coffee machine id ready with power: ${this.power}`);
+    }
+}
+
+let coffeeMachine = new CoffeeMachine ('100w');
+
+//We should not do something like below.
+//coffeeMachine._waterAmount = 200;
+
+coffeeMachine.setWaterAmount(-50);
+coffeeMachine.setWaterAmount(50);
+
+//coffeeMachine.#coffee = 30;
+coffeeMachine.setCoffeeAmount(-50);
+
+console.dir( coffeeMachine);
