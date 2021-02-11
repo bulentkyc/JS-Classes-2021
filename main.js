@@ -1,3 +1,30 @@
+'use strict';
+
+function testThis (msg) {
+    console.log(msg);
+}
+
+testThis ();
+
+let user = {userName:null, pass:null, email:null};
+
+user.userName = 'Bulent';
+
+console.log(user);
+
+let admin = {
+    role: 'admin'
+}
+
+console.log(admin.userName);
+
+admin.__proto__ = user;
+
+console.log(admin.userName);
+
+
+
+console.dir(this);
 /*Syntax:
 class ClassNameWithCapitalInitial !!no parentheses here!! {
 
@@ -94,16 +121,15 @@ rabbit.stop();
 rabbit.hide();
 
 
-
+/* 
 
 class CoffeeMachine {
     //protected property
     _waterAmount = 0;
     //Heads-up: Protection is not language level!
 
-    #coffee = 0;
-
     setWaterAmount(newAmount){
+        console.dir(this);
         if(newAmount >= 0) {
             this._waterAmount = newAmount;
         } else {
@@ -111,7 +137,15 @@ class CoffeeMachine {
         }
     }
 
+    #coffee = 0;
+
+    whatIsThis = this;
+
     setCoffeeAmount (newAmount) {
+        function testFunc () {
+            console.dir(this);
+        }
+        testFunc();
         if(newAmount >= 0) {
             this.#coffee = newAmount;
         } else {
@@ -119,6 +153,13 @@ class CoffeeMachine {
         }
     }
 
+    testF = function () {
+        return this;
+    }
+
+    static testStatic () {
+        console.log(this);
+    }
 
     constructor (power) {
         this.power = power;
@@ -138,3 +179,7 @@ coffeeMachine.setWaterAmount(50);
 coffeeMachine.setCoffeeAmount(-50);
 
 console.dir( coffeeMachine);
+
+console.dir(coffeeMachine.whatIsThis);
+
+console.dir(coffeeMachine.testF()); */
