@@ -183,3 +183,52 @@ console.dir( coffeeMachine);
 console.dir(coffeeMachine.whatIsThis);
 
 console.dir(coffeeMachine.testF()); */
+
+
+class EspressoMachine {
+
+    _waterAmount = 0;
+
+    //Suggested syntax
+    setWaterAmount (amount) {
+        if (amount < 0) {
+            this._waterAmount = 0;
+            console.warn('The water amount can not be less then 0');
+        } else {
+            this._waterAmount = amount;
+        }
+    }
+
+    getWaterAmount () {
+        return this._waterAmount;
+    }
+
+    
+    //Default syntax
+    set waterAmount (amount) {
+        if (amount < 0) {
+            this._waterAmount = 0;
+            console.warn('The water amount can not be less then 0');
+        } else {
+            this._waterAmount = amount;
+        }
+    }
+
+    get waterAmount () {
+        return this._waterAmount;
+    }
+
+
+
+    /* getWaterAmount = {
+
+    } */
+
+
+}
+
+let espresso = new EspressoMachine();
+
+espresso.waterAmount = -100;
+
+console.log(espresso);
